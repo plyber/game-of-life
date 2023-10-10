@@ -1,0 +1,20 @@
+<a href="https://blog.xojo.com/wp-content/uploads/2022/05/CleanShot-2022-05-02-at-14.25.12@2x-1024x924.png" target="_blank" >Formațiuni notabile</a> |
+<a href="https://pi.math.cornell.edu/~lipa/mec/4life2.png" target="_blank">Procesul unor formațiuni</a><br>
+<h1>Conway's Game of Life</h1>
+<div class="grid">
+    <div *ngFor="let row of grid; let rowIndex = index" class="row">
+        <div (click)="toggleCell(rowIndex, colIndex)" *ngFor="let cell of row; let colIndex = index"
+             [ngClass]=" cell === 1? 'alive':'dead'"
+             class="cell"></div>
+    </div>
+</div>
+<div class="controls">
+    <div class="buttons">
+        <button (click)="start()" [disabled]="!latestGeneration() || running">start</button>
+        <button (click)="stop()" [disabled]="!running">stop</button>
+        <button (click)="reset()">reset</button>
+    </div>
+    <div class="history">
+        <input (input)="rewind(generation)" [(ngModel)]="generation" [disabled]="running" [max]="history.length - 1" type="range"><span>generația: {{ generation }}</span>
+    </div>
+</div>
